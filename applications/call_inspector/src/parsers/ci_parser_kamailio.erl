@@ -229,6 +229,9 @@ acc(<<"pass|",_/binary>>=Logged, Buffer, _Dev, Key) ->
     {Key, [Logged|Buffer]};
 acc(<<"end|",_/binary>>=Logged, Buffer, _Dev, Key) ->
     put(Key, []),
+    {Key, [Logged|Buffer]};
+acc(<<"stop|",_/binary>>=Logged, Buffer, _Dev, Key) ->
+    put(Key, []),
     {Key, [Logged|Buffer]}.
 
 cleanse_data_and_get_timestamp(Data0) ->
