@@ -855,11 +855,11 @@ maybe_build_push_failover(Endpoint, Clid, Call) ->
 build_push_failover(Endpoint, Clid, PushJObj, Call) ->
     SIPJObj = wh_json:get_value(<<"sip">>, Endpoint),
     ToUsername = get_to_username(SIPJObj),
-    ToRealm = cf_util:get_sip_realm(Endpoint, whapps_call:account_id(Call)),    
+    ToRealm = cf_util:get_sip_realm(Endpoint, whapps_call:account_id(Call)),
     ToUser = <<ToUsername/binary, "@", ToRealm/binary>>,
     Proxy = wh_json:get_value(<<"Token-Proxy">>, PushJObj),
-    PushHeaders = wh_json:foldl(fun(K, V, Acc) -> 
-                                        wh_json:set_value(<<"X-KAZOO-PUSHER-", K/binary>>, V, Acc)  
+    PushHeaders = wh_json:foldl(fun(K, V, Acc) ->
+                                        wh_json:set_value(<<"X-KAZOO-PUSHER-", K/binary>>, V, Acc)
                                 end, wh_json:new(), PushJObj),
     wh_json:from_list(
       props:filter_empty(
