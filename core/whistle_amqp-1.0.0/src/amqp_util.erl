@@ -169,9 +169,7 @@ presence_publish(Routing, Payload) ->
     presence_publish(Routing, Payload, ?DEFAULT_CONTENT_TYPE).
 presence_publish(Routing, Payload, ContentType) ->
     presence_publish(Routing, Payload, ContentType, []).
-presence_publish(Routing, Payload, ContentType, Opts0) ->
-    Opts = [{'immediate', 'true'}
-           ] ++ Opts0,
+presence_publish(Routing, Payload, ContentType, Opts) ->
     basic_publish(?EXCHANGE_PRESENCE, Routing, Payload, ContentType, Opts).
 
 -spec notifications_publish(ne_binary(), amqp_payload()) -> 'ok'.
