@@ -95,7 +95,7 @@ process_req(DataJObj, Templates) ->
 
     Macros = [{<<"service">>, ServiceData}
               ,{<<"account">>, public_proplist(<<"account">>, DataJObj)}
-              ,{<<"admin">>, admin_user_properties(DataJObj)}
+              ,{<<"user">>, admin_user_properties(DataJObj)}
              ],
 
     %% Populate templates
